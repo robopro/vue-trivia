@@ -1,8 +1,10 @@
 <template>
-  <div id="app">
+  <div id="app" class="bg-light">
     <Navbar></Navbar>
-    <div class="container">
-      <router-view></router-view>
+    <div class="container d-flex justify-content-center">
+      <b-card class="col-sm-12 col-lg-6">
+        <router-view></router-view>
+      </b-card>
     </div>
   </div>
 </template>
@@ -25,5 +27,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  min-height: 100vh;
 }
 </style>

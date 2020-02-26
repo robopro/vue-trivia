@@ -44,15 +44,17 @@ export default {
   },
   methods: {
     onAnswerSubmit(answer) {
-      console.log(answer)
+      console.log("ON ANSWER")
       if (this.currentQuestion.questionData.correct_answer === answer) {
         this.currentQuestion.correct = true
       } else {
         this.currentQuestion.correct = false
       }
       this.currentQuestion.answered = true
+      console.log(this.currentQuestion)
       const unansweredQuestions = this.questions.filter(q => !q.answered)
       this.currentQuestion = unansweredQuestions[Math.floor(Math.random() * unansweredQuestions.length)]
+      console.log(this.currentQuestion)
     }
   }
 }

@@ -1,31 +1,28 @@
 <template>
-  <div class="col-sm-12 col-md-6">
-    <b-card
-      :title="question.questionData.category"
-      :sub-title="question.questionData.difficulty"
-    >
-      <b-card-text>{{question.questionData.question}}</b-card-text>
-      <hr>
-      <b-form @submit="onSubmit">
-        <b-form-group
-          id="quiz-question-answers"
-          label="Select an answer:"
-          class="text-left"
+  <div>
+    <b-card-title>{{question.questionData.category}}</b-card-title>
+    <b-card-sub-title>{{question.questionData.difficulty}}</b-card-sub-title>
+    <b-card-text>{{question.questionData.question}}</b-card-text>
+    <hr>
+    <b-form @submit="onSubmit">
+      <b-form-group
+        id="quiz-question-answers"
+        label="Select an answer:"
+        class="text-left"
+      >
+        <b-form-radio 
+          v-for="(ans, index) of question.answers" 
+          :key="index" 
+          v-model="answer" 
+          :value="ans"
         >
-          <b-form-radio 
-            v-for="(ans, index) of question.answers" 
-            :key="index" 
-            v-model="answer" 
-            :value="ans"
-          >
-            {{ans}}
-          </b-form-radio>
-        </b-form-group>
+          {{ans}}
+        </b-form-radio>
+      </b-form-group>
 
-        <b-button type="submit" variant="primary">Submit</b-button>
-      </b-form>
-      <h1>{{question.questionData.correct_answer}}</h1>
-    </b-card>
+      <b-button type="submit" variant="primary">Submit</b-button>
+    </b-form>
+    <h1>{{question.questionData.correct_answer}}</h1>
   </div>
 </template>
 
