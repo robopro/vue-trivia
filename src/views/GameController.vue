@@ -8,9 +8,6 @@
 export default {
     name: 'GameController',
     props: ['number', 'category', 'difficulty'],
-    created: () => {
-        console.log("TEST");
-    }
 }
 </script>
 
