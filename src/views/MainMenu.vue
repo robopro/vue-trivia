@@ -2,7 +2,7 @@
   <div>
     <h1>New Game</h1>
     <div class="d-flex justify-content-center">
-      <GameForm v-on:form-submitted="onFormSubmit"></GameForm>
+      <GameForm @form-submitted="onFormSubmit"></GameForm>
     </div>
   </div>
 </template>
