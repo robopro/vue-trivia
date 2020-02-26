@@ -54,6 +54,7 @@ export default {
       evt.preventDefault()
       if (this.answer) {
         this.$emit('answer-submitted', this.answer)
+        this.answer = null
       }
     }
   }
