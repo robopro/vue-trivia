@@ -4,7 +4,6 @@
     <div id="current-question" class="d-flex justify-content-center" v-if="!loading">
       <QuizQuestion v-bind:question="currentQuestion" @answer-submitted="onAnswerSubmit"></QuizQuestion>
     </div>
-    <h1>{{ category }}</h1>
   </div>
 </template>
 
