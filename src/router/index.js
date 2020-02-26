@@ -1,17 +1,22 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import MainMenu from '../views/MainMenu.vue'
+import GameController from '../views/GameController.vue'
 
 Vue.use(VueRouter)
 
-const routes = [{
-  name: 'home',
-  path: '/',
-  component: MainMenu
-}
-
+const routes = [
+  {
+    name: 'home',
+    path: '/',
+    component: MainMenu
+  }, {
+    name: 'quiz',
+    path: '/quiz/:number/:category/:difficulty',
+    component: GameController,
+    props: true
+  }
 ]
-// routes.push({ name: 'home', path: '/', component: MainMenu })
 
 const router = new VueRouter({
   mode: 'history',

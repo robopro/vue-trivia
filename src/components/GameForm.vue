@@ -1,44 +1,59 @@
 <template>
-  <div id="game-form">
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-      <b-form-group id="input-group-number-of-questions">
-        <b-form-input
-          id="input-number-of-questions"
-          v-model="form.number"
-          type="number"
-          min="10"
-          max="20"
-          required 
-          placeholder="Number of questions: 10 to 20"
-        ></b-form-input>
-      </b-form-group>
+  <div class="col-sm-12 col-md-6">
+    <LoadingIcon v-if="loading"></LoadingIcon>
 
-      <b-form-group id="input-group-category">
-        <b-form-select
-          id="input-category"
-          v-model="form.category"
-          :options="categories"
-          required 
-        ></b-form-select>
-      </b-form-group>
+    <div id="game-form"  v-if="!loading">
+      <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+        <b-form-group 
+          id="input-group-number-of-questions"
+          label="Select a number"
+          label-for="input-number-of-questions"
+          class="text-left"
+        >
+          <b-form-input
+            id="input-number-of-questions"
+            v-model="form.number"
+            type="number"
+            min="10"
+            max="20"
+            required 
+            placeholder="Between 10 and 20"
+          ></b-form-input>
+        </b-form-group>
 
-      <b-form-group id="input-group-difficulty">
-        <b-form-select
-          id="input-difficulty"
-          v-model="form.difficulty"
-          :options="difficulties"
-          required 
-        ></b-form-select>
-      </b-form-group>
+        <b-form-group id="input-group-category">
+          <b-form-select
+            id="input-category"
+            v-model="form.category"
+            :options="categories"
+            required 
+          ></b-form-select>
+        </b-form-group>
 
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
-    </b-form>
+        <b-form-group id="input-group-difficulty">
+          <b-form-select
+            id="input-difficulty"
+            v-model="form.difficulty"
+            :options="difficulties"
+            required 
+          ></b-form-select>
+        </b-form-group>
+
+        <b-button type="submit" variant="primary">Submit</b-button>
+        <b-button type="reset" variant="danger">Reset</b-button>
+      </b-form>
+    </div>
   </div>
 </template>
 
 <script>
+import LoadingIcon from './LoadingIcon'
+import axios from 'axios'
+
 export default {
+  components: {
+    LoadingIcon
+  },
   data() {
     return {
       form: {
@@ -46,16 +61,26 @@ export default {
         category: null,
         difficulty: null
       },
-      categories: [{ text: 'Category', value: null}, 'Science'],
+      categories: [{ text: 'Category', value: null }],
       difficulties: [{ text: 'Difficulty', value: null }, 'Easy', 'Medium', 'Hard'],
-      show: true
+      show: true,
+      loading: true
     }
+  },
+  created() {
+    axios.get('https://opentdb.com/api_category.php')
+      .then(resp => resp.data)
+      .then(resp => {
+        resp.trivia_categories.forEach(category => {
+          this.categories.push({text: category.name, value: category.id})
+        });
+        this.loading = false;
+      })
   },
   methods: {
     onSubmit(evt) {
       evt.preventDefault()
       this.$emit('form-submitted', this.form)
-      console.log("emitting")
     },
     onReset(evt) {
       evt.preventDefault()
@@ -70,9 +95,7 @@ export default {
     }
   }
 }
-
 </script>
 
-<style>
-
+<style scoped>
 </style>

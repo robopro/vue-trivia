@@ -1,6 +1,5 @@
 <template>
-  <div id="navbar">
-    <b-navbar toggleable="sm" type="dark">
+    <b-navbar id="navbar" class="mb-4" toggleable="sm" type="dark" sticky>
       <b-navbar-brand id="nav-logo" :to="{ name: 'home' }">Vue Trivia</b-navbar-brand>
 
       <!-- Right aligned nav items -->
@@ -8,7 +7,6 @@
         <b-nav-item :to="{ name: 'home' }">New Game </b-nav-item>
       </b-navbar-nav>
     </b-navbar>
-  </div>
 </template>
 
 <script>
@@ -22,10 +20,8 @@ export default {
 
 #navbar {
   background-color: #f08;
-  /* border-bottom: solid 1px #000; */
 }
 #nav-logo {
   font-family: 'Leckerli One';
-  /* color: #f08; */
 }
 </style>
