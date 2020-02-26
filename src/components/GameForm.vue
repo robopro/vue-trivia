@@ -1,5 +1,5 @@
 <template>
-  <div class="col-sm-12 col-md-6">
+  <div>
     <LoadingIcon v-if="loading"></LoadingIcon>
 
     <div id="game-form"  v-if="!loading">
