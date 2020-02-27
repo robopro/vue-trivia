@@ -3,7 +3,7 @@
     <LoadingIcon v-if="loading"></LoadingIcon>
 
     <div id="game-form"  v-if="!loading">
-      <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+      <b-form @submit="onSubmit" v-if="show">
         <b-form-group 
           id="input-group-number-of-questions"
           label="Select a number"
@@ -14,10 +14,10 @@
             id="input-number-of-questions"
             v-model="form.number"
             type="number"
-            min="10"
-            max="20"
+            :min="minQuestions"
+            :max="maxQuestions"
             required 
-            placeholder="Between 10 and 20"
+            :placeholder="`Between ${minQuestions} and ${maxQuestions}`"
           ></b-form-input>
         </b-form-group>
 
@@ -26,7 +26,6 @@
             id="input-category"
             v-model="form.category"
             :options="categories"
-            required 
           ></b-form-select>
         </b-form-group>
 
@@ -35,12 +34,10 @@
             id="input-difficulty"
             v-model="form.difficulty"
             :options="difficulties"
-            required 
           ></b-form-select>
         </b-form-group>
 
-        <b-button type="submit" variant="primary">Submit</b-button>
-        <b-button type="reset" variant="danger">Reset</b-button>
+        <b-button type="submit" variant="success">Submit</b-button>
       </b-form>
     </div>
   </div>
@@ -58,13 +55,15 @@ export default {
     return {
       form: {
         number: '',
-        category: null,
-        difficulty: null
+        category: '',
+        difficulty: '',
       },
-      categories: [{ text: 'Category', value: null }],
-      difficulties: [{ text: 'Difficulty', value: null }, 'Easy', 'Medium', 'Hard'],
+      categories: [{ text: 'Category', value: '' }],
+      difficulties: [{ text: 'Difficulty', value: '' }, 'Easy', 'Medium', 'Hard'],
       show: true,
-      loading: true
+      loading: true,
+      minQuestions: 10,
+      maxQuestions: 20
     }
   },
   created() {
@@ -81,17 +80,6 @@ export default {
     onSubmit(evt) {
       evt.preventDefault()
       this.$emit('form-submitted', this.form)
-    },
-    onReset(evt) {
-      evt.preventDefault()
-      this.form.number = ''
-      this.form.category = null
-      this.form.difficulty = null
-      // Trick to reset/clear native browser form validation state
-      this.show = false
-      this.$nextTick(() => {
-        this.show = true
-      })
     }
   }
 }

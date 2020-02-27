@@ -9,17 +9,10 @@ Vue.config.productionTip = false
 
 Vue.use(BootstrapVue)
 
-const shuffleMixin = {
-  methods: {
-    shuffleArray: (arr) => arr
-      .map(a => [Math.random(), a])
-      .sort((a, b) => a[0] - b[0])
-      .map(a => a[1])
-  }
-}
+const state = { questions: [] }
 
 new Vue({
   router,
-  mixins: [shuffleMixin],
+  data: state,
   render: h => h(App)
 }).$mount('#app')
