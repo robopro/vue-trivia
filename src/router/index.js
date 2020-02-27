@@ -18,7 +18,7 @@ const routes = [
     props: true
   }, {
     name: 'result',
-    path: 'result',
+    path: '/result',
     component: GameOver
   }
 ]

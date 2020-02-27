@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div id="current-question">
     <b-card-title>{{question.questionData.category}}</b-card-title>
     <b-card-sub-title>{{question.questionData.difficulty}}</b-card-sub-title>
-    <b-card-text>{{question.questionData.question}}</b-card-text>
+    <b-card-text v-html="question.questionData.question"></b-card-text>
     <hr>
     <b-form @submit="onSubmit">
       <b-form-group
@@ -16,7 +16,7 @@
           v-model="answer" 
           :value="ans"
         >
-          {{ans}}
+          <div v-html="ans"></div>
         </b-form-radio>
       </b-form-group>
 
@@ -37,11 +37,8 @@ export default {
   },
   data() {
     return {
-      answer: null
+      answer: null,
     }
-  },
-  created() {
-    this.question.answers = this.shuffleArray(this.question.answers)
   },
   methods: {
     onSubmit(evt) {
@@ -56,6 +53,10 @@ export default {
 </script>
 
 <style scoped>
+#current-question {
+  width: 100%;
+}
+
 .card-subtitle:first-letter {
   text-transform: capitalize;
 }

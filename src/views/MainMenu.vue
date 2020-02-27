@@ -14,7 +14,9 @@ export default {
   },
   methods: {
     onFormSubmit(data) {
-      this.$router.push({ name: 'quiz', params: data })
+      const params = data
+      params.difficulty = params.difficulty.toLowerCase()
+      this.$router.push({ name: 'quiz', params: params })
     }
   }
 }

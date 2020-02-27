@@ -38,6 +38,9 @@ export default {
     EventBus.$on('alert-error', (error) => {
       this.showAlert(error)
     })
+  },
+  beforeDestroy() {
+    EventBus.$off('alert-error')
   }
 }
 </script>
