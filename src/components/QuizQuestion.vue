@@ -52,23 +52,29 @@ export default {
         this.$emit('answer-submitted', this.answer)
         this.answer = null
       }
+    },
+    setVariant() {
+      switch (this.question.questionData.difficulty) {
+        case 'easy':
+          this.variant = this.variants.easy
+          break
+        case 'medium':
+          this.variant = this.variants.medium
+          break
+        case 'hard':
+          this.variant = this.variants.hard
+          break
+        default:
+          this.variant = this.variants.default
+          break
+      }
     }
   },
+  created() {
+    this.setVariant()
+  },
   beforeUpdate() {
-    switch (this.question.questionData.difficulty) {
-      case 'easy':
-        this.variant = this.variants.easy
-        break
-      case 'medium':
-        this.variant = this.variants.medium
-        break
-      case 'hard':
-        this.variant = this.variants.hard
-        break
-      default:
-        this.variant = this.variants.default
-        break
-    }
+    this.setVariant()
   }
 }
 </script>
