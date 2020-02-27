@@ -5,6 +5,7 @@
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
         <b-nav-item :to="{ name: 'home' }">New Game </b-nav-item>
+        <b-nav-item href="https://github.com/robopro/vue-trivia" target="_blank">About</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
 </template>
