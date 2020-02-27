@@ -9,7 +9,7 @@
       <b-card-body>
         <b-card-text class="font-weight-bold" v-html="question.questionData.question"></b-card-text>
         <b-card-text class="px-2" v-html="question.questionData.correct_answer"></b-card-text>
-        <b-card-text class="px-2" :class="{ correct: question.correct, wrong: !question.correct }"
+        <b-card-text class="px-2" :class="{ 'custom-success': question.correct, 'custom-danger': !question.correct }"
           v-html="question.userAnswer"
         >
         </b-card-text>
@@ -29,8 +29,8 @@ export default {
   },
   data() {
     return {
-      variants: { easy: 'bg-success', medium: 'bg-warning', hard: 'bg-danger', default: 'bg-info' },
-      variant: 'bg-info'
+      variants: { easy: 'custom-success', medium: 'custom-warning', hard: 'custom-danger', default: 'custom-info' },
+      variant: 'custom-info'
     }
   },
   created() {
@@ -53,11 +53,4 @@ export default {
 </script>
 
 <style scoped>
-.correct {
-  background-color: #d4edda;
-}
-
-.wrong {
-  background-color: #f8d7da;
-}
 </style>

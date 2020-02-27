@@ -60,10 +60,35 @@ export default {
   margin-top: 0;
 }
 
+.custom-success {
+  background-color: #d4edda !important;
+}
+
+.btn.custom-success {
+  background-color: #59dd99 !important;
+  border-color: #59aa73 !important;
+}
+
+.btn.custom-success:hover {
+  background-color: #59aa73 !important;
+  border-color: #59aa73 !important;
+}
+
+.custom-warning {
+  background-color: #ffc10736 !important;
+}
+
+.custom-danger {
+  background-color: #f8d7da !important;
+}
+
+.custom-info {
+  background-color: #17a2b8  !important;
+}
+
 @media (min-width: 992px) {
   #main-card {
     margin-top: 2em;
   }
 }
-
 </style>

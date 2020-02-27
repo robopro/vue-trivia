@@ -23,7 +23,7 @@
           </b-form-radio>
         </b-form-group>
 
-        <b-button type="submit" variant="success">Submit</b-button>
+        <b-button type="submit" class="custom-success">Submit</b-button>
       </b-form>
     </b-card-body>
   </div>
@@ -41,8 +41,8 @@ export default {
   data() {
     return {
       answer: null,
-      variants: { easy: 'bg-success', medium: 'bg-warning', hard: 'bg-danger', default: 'bg-info' },
-      variant: 'bg-info'
+      variants: { easy: 'custom-success', medium: 'custom-warning', hard: 'custom-danger', default: 'custom-info' },
+      variant: 'custom-info'
     }
   },
   methods: {
