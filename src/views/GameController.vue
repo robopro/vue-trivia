@@ -1,9 +1,7 @@
 <template>
   <div>
     <LoadingIcon v-if="loading"></LoadingIcon>
-    <div id="current-question-container" class="d-flex justify-content-center" v-if="!loading">
-      <QuizQuestion v-bind:question="currentQuestion" @answer-submitted="onAnswerSubmit"></QuizQuestion>
-    </div>
+    <QuizQuestion v-bind:question="currentQuestion" @answer-submitted="onAnswerSubmit" v-if="!loading"></QuizQuestion>
   </div>
 </template>
 
@@ -25,12 +23,15 @@ export default {
   data() {
     return {
       questions: [],
-      currentQuestion: null,
+      currentQuestion: {},
       loading: true
     }
   },
   created() {
-    const url = `https://opentdb.com/api.php?amount=${this.number}&category=${this.category}&difficulty=${this.difficulty}&type=multiple`
+    let url = `https://opentdb.com/api.php?amount=${this.number}`
+    if (this.category) url += `&category=${this.category}`
+    if (this.difficulty) url += `&difficulty=${this.difficulty}`
+    
     axios.get(url)
       .then(resp => resp.data)
       .then(resp => {

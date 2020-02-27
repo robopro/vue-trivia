@@ -1,6 +1,11 @@
 <template>
   <div>
-    <Result></Result>
+    <b-card-body>
+      <b-card-title>Your Score: {{ score }} / {{ maxScore }}</b-card-title>
+    </b-card-body>
+    <div id="results">
+      <Result v-for="(question, index) of questions" :key="index" :question="question"></Result>
+    </div>
   </div>
 </template>
 
@@ -14,17 +19,21 @@ export default {
   },
   data() {
     return {
-      questions: []
+      questions: [],
+      score: 0,
+      maxScore: 0
     }
   },
   methods: {
-    setAnswerData(ansData) {
-      this.answerData = ansData
+    setScore() {
+      this.maxScore = this.questions.length * 10
+      this.score = this.questions.filter(q => q.correct).length * 10
     }
   },
   created() {
-    this.questions = this.$root.$data
+    this.questions = this.$root.$data.state || []
     this.$root.$data.state = []
+    this.setScore()
   },
 }
 </script>

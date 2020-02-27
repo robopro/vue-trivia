@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <h1>New Game</h1>
+  <b-card-body>
+    <b-card-title>New Game</b-card-title>
     <GameForm @form-submitted="onFormSubmit"></GameForm>
-  </div>
+  </b-card-body>
 </template>
 
 <script>
@@ -14,9 +14,9 @@ export default {
   },
   methods: {
     onFormSubmit(data) {
-      const params = data
-      params.difficulty = params.difficulty.toLowerCase()
-      this.$router.push({ name: 'quiz', params: params })
+      const query = data
+      query.difficulty = query.difficulty.toLowerCase()
+      this.$router.push({ name: 'quiz', query: query })
     }
   }
 }

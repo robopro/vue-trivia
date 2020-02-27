@@ -5,7 +5,7 @@
       {{ errorMessage }}
     </b-alert>
     <div class="d-flex justify-content-center">
-      <b-card id="main-card" class="col-sm-12 col-lg-4">
+      <b-card no-body id="main-card" class="col-sm-12 col-lg-4 px-0">
         <router-view></router-view>
       </b-card>
     </div>

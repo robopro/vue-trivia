@@ -1,28 +1,31 @@
 <template>
-  <div id="current-question">
-    <b-card-title>{{question.questionData.category}}</b-card-title>
-    <b-card-sub-title>{{question.questionData.difficulty}}</b-card-sub-title>
-    <b-card-text v-html="question.questionData.question"></b-card-text>
-    <hr>
-    <b-form @submit="onSubmit">
-      <b-form-group
-        id="quiz-question-answers"
-        label="Select an answer:"
-        class="text-left"
-      >
-        <b-form-radio 
-          v-for="(ans, index) of question.answers" 
-          :key="index" 
-          v-model="answer" 
-          :value="ans"
+  <div>
+    <b-card-header class="d-flex justify-content-between border-bottom-0">
+      <div>{{ question.questionData.category }}</div>
+      <div class="text-capitalize">{{ question.questionData.difficulty }}</div>
+    </b-card-header>
+    <b-card-body>
+      <b-card-text class="font-weight-bold" v-html="question.questionData.question"></b-card-text>
+      <hr>
+      <b-form @submit="onSubmit">
+        <b-form-group
+          id="quiz-question-answers"
+          label="Select an answer:"
+          class="text-left"
         >
-          <div v-html="ans"></div>
-        </b-form-radio>
-      </b-form-group>
+          <b-form-radio 
+            v-for="(ans, index) of question.answers" 
+            :key="index" 
+            v-model="answer" 
+            :value="ans"
+          >
+            <div v-html="ans"></div>
+          </b-form-radio>
+        </b-form-group>
 
-      <b-button type="submit" variant="primary">Submit</b-button>
-    </b-form>
-    <h1>{{question.questionData.correct_answer}}</h1>
+        <b-button type="submit" variant="success">Submit</b-button>
+      </b-form>
+    </b-card-body>
   </div>
 </template>
 
@@ -53,11 +56,4 @@ export default {
 </script>
 
 <style scoped>
-#current-question {
-  width: 100%;
-}
-
-.card-subtitle:first-letter {
-  text-transform: capitalize;
-}
 </style>

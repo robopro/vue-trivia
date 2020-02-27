@@ -13,9 +13,9 @@ const routes = [
     component: MainMenu
   }, {
     name: 'quiz',
-    path: '/quiz/:number/:category/:difficulty',
+    path: '/quiz',
     component: GameController,
-    props: true
+    props: (route) => ({ number: route.query.number, difficulty: route.query.difficulty, category: route.query.category })
   }, {
     name: 'result',
     path: '/result',
