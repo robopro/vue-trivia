@@ -14,7 +14,7 @@ export default {
   },
   methods: {
     onFormSubmit(data) {
-      this.$router.replace({ name: 'quiz', params: data })
+      this.$router.push({ name: 'quiz', params: data })
     }
   }
 }

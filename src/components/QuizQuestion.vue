@@ -44,12 +44,6 @@ export default {
     this.question.answers = this.shuffleArray(this.question.answers)
   },
   methods: {
-    shuffleArray(arr) {
-      return arr
-        .map(a => [Math.random(), a])
-        .sort((a, b) => a[0] - b[0])
-        .map(a => a[1]);
-    },
     onSubmit(evt) {
       evt.preventDefault()
       if (this.answer) {
