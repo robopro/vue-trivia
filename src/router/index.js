@@ -15,7 +15,12 @@ const routes = [
     name: 'quiz',
     path: '/quiz',
     component: GameController,
-    props: (route) => ({ number: route.query.number, difficulty: route.query.difficulty, category: route.query.category })
+    props: (route) => ({ 
+      number: route.query.number, 
+      difficulty: route.query.difficulty, 
+      category: route.query.category,
+      type: route.query.type
+    })
   }, {
     name: 'result',
     path: '/result',

@@ -37,6 +37,14 @@
           ></b-form-select>
         </b-form-group>
 
+        <b-form-group id="input-group-type">
+          <b-form-select
+            id="input-type"
+            v-model="form.type"
+            :options="types"
+          ></b-form-select>
+        </b-form-group>
+
         <b-button type="submit" variant="success">Submit</b-button>
       </b-form>
     </div>
@@ -57,9 +65,15 @@ export default {
         number: '',
         category: '',
         difficulty: '',
+        type: ''
       },
       categories: [{ text: 'Category', value: '' }],
       difficulties: [{ text: 'Difficulty', value: '' }, 'Easy', 'Medium', 'Hard'],
+      types: [
+        { text: 'Type', value: '' }, 
+        { text: 'Multiple Choice', value: 'multiple' }, 
+        { text: 'True or False', value: 'boolean'}
+      ],
       show: true,
       loading: true,
       minQuestions: 10,

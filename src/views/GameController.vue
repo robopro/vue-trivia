@@ -15,7 +15,7 @@ import axios from 'axios'
 export default {
   name: 'GameController',
   mixins: [ShuffleMixin],
-  props: ['number', 'category', 'difficulty'],
+  props: ['number', 'category', 'difficulty', 'type'],
   components: {
     QuizQuestion,
     LoadingIcon
@@ -31,7 +31,8 @@ export default {
     let url = `https://opentdb.com/api.php?amount=${this.number}`
     if (this.category) url += `&category=${this.category}`
     if (this.difficulty) url += `&difficulty=${this.difficulty}`
-    
+    if (this.type) url += `&type=${this.type}`
+
     axios.get(url)
       .then(resp => resp.data)
       .then(resp => {

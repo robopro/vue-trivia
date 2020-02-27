@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-card-header class="d-flex justify-content-between border-bottom-0">
+    <b-card-header :class="variant" class="d-flex justify-content-between border-bottom-0">
       <div>{{ question.questionData.category }}</div>
       <div class="text-capitalize">{{ question.questionData.difficulty }}</div>
     </b-card-header>
@@ -41,6 +41,8 @@ export default {
   data() {
     return {
       answer: null,
+      variants: { easy: 'bg-success', medium: 'bg-warning', hard: 'bg-danger', default: 'bg-info' },
+      variant: 'bg-info'
     }
   },
   methods: {
@@ -50,6 +52,22 @@ export default {
         this.$emit('answer-submitted', this.answer)
         this.answer = null
       }
+    }
+  },
+  beforeUpdate() {
+    switch (this.question.questionData.difficulty) {
+      case 'easy':
+        this.variant = this.variants.easy
+        break
+      case 'medium':
+        this.variant = this.variants.medium
+        break
+      case 'hard':
+        this.variant = this.variants.hard
+        break
+      default:
+        this.variant = this.variants.default
+        break
     }
   }
 }
