@@ -1,5 +1,5 @@
 <template>
-    <b-navbar id="navbar" class="mb-4" type="dark" sticky>
+    <b-navbar id="navbar" type="dark" sticky>
       <b-navbar-brand id="nav-logo" :to="{ name: 'home' }">Vue Trivia</b-navbar-brand>
 
       <!-- Right aligned nav items -->
