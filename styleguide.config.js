@@ -13,6 +13,10 @@ module.exports = {
     }
   ],
   styleguideDir: 'docs',
+  ribbon: {
+    url: 'https://github.com/robopro/vue-trivia',
+    text: 'Fork me on GitHub'
+  },
 	// webpackConfig: {
 	//   // custom config goes here
 	// },
