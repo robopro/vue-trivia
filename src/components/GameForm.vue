@@ -3,7 +3,7 @@
     <LoadingIcon v-if="loading"></LoadingIcon>
 
     <div v-else>
-      <b-form @submit="onSubmit" v-if="show">
+      <b-form @submit="onSubmit">
         <b-form-group 
           id="input-group-number-of-questions"
           label="Select a number"
@@ -61,12 +61,15 @@ export default {
   },
   data() {
     return {
+      /** Form data, tied to respective inputs */
+      // 
       form: {
         number: '',
         category: '',
         difficulty: '',
         type: ''
       },
+      // Used for form dropdowns and number input
       categories: [{ text: 'Category', value: '' }],
       difficulties: [{ text: 'Difficulty', value: '' }, 'Easy', 'Medium', 'Hard'],
       types: [
@@ -74,30 +77,44 @@ export default {
         { text: 'Multiple Choice', value: 'multiple' }, 
         { text: 'True or False', value: 'boolean'}
       ],
-      show: true,
-      loading: true,
       minQuestions: 10,
-      maxQuestions: 20
+      maxQuestions: 20,
+      // Used for displaying ajax loading animation OR form
+      loading: true
     }
   },
   created() {
-    axios.get('https://opentdb.com/api_category.php')
+    this.fetchCategories()
+  },
+  methods: {
+    /** Invoked on created(). 
+     * Fetches question categories from Open Trivia Database API. 
+     * Needed for category dropdown in form.
+     * @public
+     */
+    fetchCategories() {
+      axios.get('https://opentdb.com/api_category.php')
       .then(resp => resp.data)
       .then(resp => {
         resp.trivia_categories.forEach(category => {
-          this.categories.push({text: category.name, value: category.id})
+          this.categories.push({text: category.name, value: `#{category.id}`})
         });
         this.loading = false;
       })
-  },
-  methods: {
+    },
     onSubmit(evt) {
       evt.preventDefault()
+       /** Triggered on form submit. Passes form data
+        * @event form-submitted
+        * @type {number|string}
+        * @property {object}
+        */
       this.$emit('form-submitted', this.form)
     }
   }
 }
 </script>
 
-<style scoped>
-</style>
+<docs>
+Child of MainMenu view. Handles form input for game settings, and emits to parent (MainMenu).
+</docs>

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-card no-body class="result-card rounded-0">
-      <QuizQuestionBody :questionData="question.questionData"></QuizQuestionBody>
+    <b-card no-body class="answer-card rounded-0">
+      <QuestionBody :questionData="question.questionData"></QuestionBody>
       <b-card-body class="pt-0 text-left">
         <hr class="mt-0">
         <b-card-text 
@@ -21,24 +21,30 @@
 </template>
 
 <script>
-import QuizQuestionBody from './QuizQuestionBody'
+import QuestionBody from './QuestionBody'
 
 export default {
-  name: 'Result',
+  name: 'Answer',
   props: {
+    /** Question object containing questionData, possible answers, and user answer information. */
     question: {
       required: true,
       type: Object
     }
   },
   components: {
-    QuizQuestionBody
+    QuestionBody
   }
 }
 </script>
 
 <style scoped>
-.result-card >>> .card-header {
+.answer-card >>> .card-header {
   border-radius: 0;
 }
 </style>
+
+<docs>
+Simple card to display the question data, user answer, and whether the answer was correct or not.
+Has QuestionBody child component.
+</docs>

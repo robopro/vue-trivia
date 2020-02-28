@@ -12,8 +12,9 @@
 
 <script>
 export default {
-  name: 'QuizQuestionBody',
+  name: 'QuestionBody',
   props: {
+    /** Object containing question data as given by API. */
     questionData: {
       required: true,
       type: Object
@@ -26,6 +27,10 @@ export default {
     }
   },
   methods: {
+    /** Invoked on mounted().
+     * Sets background color of card header based on question difficulty.
+     * @public
+     */
     setVariant() {
       switch (this.questionData.difficulty) {
         case 'easy':
@@ -49,5 +54,7 @@ export default {
 }
 </script>
 
-<style scoped>
-</style>
+<docs>
+Simple component displaying question category, difficulty and question text. 
+Used on both Question component and Answer component.
+</docs>
