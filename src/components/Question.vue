@@ -1,6 +1,6 @@
 <template>
   <div>
-    <QuizQuestionBody :questionData="question.questionData"></QuizQuestionBody>
+    <QuestionBody :questionData="question.questionData"></QuestionBody>
 
     <b-card-body class="pt-0">
       <hr>
@@ -26,18 +26,19 @@
 </template>
 
 <script>
-import QuizQuestionBody from './QuizQuestionBody'
+import QuestionBody from './QuestionBody'
 
 export default {
-  name: 'QuizQuestion',
+  name: 'Question',
   props: {
+    /** Question object containing questionData, possible answers, and user answer information. */
     question: {
       required: true,
       type: Object
     }
   },
   components: {
-    QuizQuestionBody
+    QuestionBody
   },
   data() {
     return {
@@ -48,6 +49,11 @@ export default {
     onSubmit(evt) {
       evt.preventDefault()
       if (this.answer) {
+        /** Triggered on form submit. Passes user answer.
+        * @event answer-submitted
+        * @type {number|string}
+        * @property {string}
+        */
         this.$emit('answer-submitted', this.answer)
         this.answer = null
       }
@@ -56,5 +62,8 @@ export default {
 }
 </script>
 
-<style scoped>
-</style>
+<docs>
+Component shows question data and form for user to select answer.
+Emits custom event and user answer to parent.
+Has QuestionBody component as child.
+</docs>

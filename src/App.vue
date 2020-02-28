@@ -55,11 +55,13 @@ export default {
   min-height: 100vh;
 }
 
+/* Need to overwrite bootstrap class. */
 .col-sm-12 {
   padding: 0;
   margin-top: 0;
 }
 
+/* Custom variants instead of bootstraps */
 .custom-success {
   background-color: #d4edda !important;
 }
@@ -83,13 +85,20 @@ export default {
 }
 
 .custom-info {
-  background-color: rgba(23,162,184,0.749) !important;
+  background-color: #f08 !important;
 }
 
+/* Needed for radio buttons to be clickable on entire line. Can't be scoped in Question component. */
+.custom-control-label {
+  width: 100%;
+}
+
+/* Set min height to make loading animation look nicer. */
 #main-card {
   min-height: 25vh;
 }
 
+/* Overwriting bootstrap for small screen. */
 @media (max-width: 991px) {
   #main-card {
     border-radius: 0;
