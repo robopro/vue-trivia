@@ -75,7 +75,7 @@ export default {
 }
 
 .custom-warning {
-  background-color: #ffc10736 !important;
+  background-color: rgba(255,193,7,0.211) !important;
 }
 
 .custom-danger {
@@ -83,7 +83,7 @@ export default {
 }
 
 .custom-info {
-  background-color: #17a2b8bf !important;
+  background-color: rgba(23,162,184,0.749) !important;
 }
 
 #main-card {
@@ -98,7 +98,6 @@ export default {
   #main-card .card-header {
     border-radius: 0;
   }
-
 }
 
 @media (min-width: 992px) {
