@@ -1,17 +1,17 @@
 <template>
   <div class="h-100">
       <b-card-header class="custom-info text-white font-weight-bold">Your Score: {{ score }} / {{ maxScore }}</b-card-header>
-    <Result v-for="(question, index) of questions" :key="index" :question="question"></Result>
+    <Answer v-for="(question, index) of questions" :key="index" :question="question"></Answer>
   </div>
 </template>
 
 <script>
-import Result from '../components/Result'
+import Answer from '../components/Answer'
 
 export default {
   name: 'GameOver',
   components: {
-    Result
+    Answer
   },
   data() {
     return {
@@ -21,18 +21,33 @@ export default {
     }
   },
   methods: {
+    /** Invoked on created().
+     * Grabs data from $root.$data.state.
+     * Empties $root.$data.state => This is done to ensure data is cleared when starting a new game.
+     * Invokes setScore().
+     * @public
+     */
+    setQuestions() {
+      this.questions = this.$root.$data.state || []
+      this.$root.$data.state = []
+      this.setScore()
+    },
+    /** Computes maximum possible score (amount of questions * 10)
+     * Computes achieved score (amount of correct answers * 10)
+     * @public
+     */
     setScore() {
       this.maxScore = this.questions.length * 10
       this.score = this.questions.filter(q => q.correct).length * 10
     }
   },
   created() {
-    this.questions = this.$root.$data.state || []
-    this.$root.$data.state = []
-    this.setScore()
-  },
+    this.setQuestions();
+  }
 }
 </script>
 
-<style scoped>
-</style>
+<docs>
+Simple view to show the user the results of the trivia game.
+Has Answer child component.
+</docs>
