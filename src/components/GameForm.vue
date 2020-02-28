@@ -97,7 +97,7 @@ export default {
       .then(resp => resp.data)
       .then(resp => {
         resp.trivia_categories.forEach(category => {
-          this.categories.push({text: category.name, value: `#{category.id}`})
+          this.categories.push({text: category.name, value: `${category.id}`})
         });
         this.loading = false;
       })
