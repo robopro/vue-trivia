@@ -83,7 +83,7 @@ export default {
 }
 
 .custom-info {
-  background-color: #17a2b8  !important;
+  background-color: #17a2b8bf !important;
 }
 
 #main-card {
