@@ -61,8 +61,7 @@ export default {
   },
   data() {
     return {
-      /** Form data, tied to respective inputs */
-      // 
+      // Form data, tied to respective inputs
       form: {
         number: '',
         category: '',
