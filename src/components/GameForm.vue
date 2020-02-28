@@ -2,7 +2,7 @@
   <div>
     <LoadingIcon v-if="loading"></LoadingIcon>
 
-    <div id="game-form"  v-if="!loading">
+    <div v-else>
       <b-form @submit="onSubmit" v-if="show">
         <b-form-group 
           id="input-group-number-of-questions"

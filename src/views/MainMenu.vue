@@ -1,8 +1,10 @@
 <template>
-  <b-card-body>
-    <b-card-title>New Game</b-card-title>
+<div>
+  <b-card-header class="custom-info text-white font-weight-bold">New Game</b-card-header>
+  <b-card-body class="h-100">
     <GameForm @form-submitted="onFormSubmit"></GameForm>
   </b-card-body>
+</div>
 </template>
 
 <script>

@@ -1,15 +1,11 @@
 <template>
   <div>
-    <b-card-header :class="variant" class="d-flex justify-content-between border-bottom-0">
-      <div>{{ question.questionData.category }}</div>
-      <div class="text-capitalize">{{ question.questionData.difficulty }}</div>
-    </b-card-header>
-    <b-card-body>
-      <b-card-text class="font-weight-bold" v-html="question.questionData.question"></b-card-text>
+    <QuizQuestionBody :questionData="question.questionData"></QuizQuestionBody>
+
+    <b-card-body class="pt-0">
       <hr>
       <b-form @submit="onSubmit">
         <b-form-group
-          id="quiz-question-answers"
           label="Select an answer:"
           class="text-left"
         >
@@ -30,6 +26,8 @@
 </template>
 
 <script>
+import QuizQuestionBody from './QuizQuestionBody'
+
 export default {
   name: 'QuizQuestion',
   props: {
@@ -38,11 +36,12 @@ export default {
       type: Object
     }
   },
+  components: {
+    QuizQuestionBody
+  },
   data() {
     return {
-      answer: null,
-      variants: { easy: 'custom-success', medium: 'custom-warning', hard: 'custom-danger', default: 'custom-info' },
-      variant: 'custom-info'
+      answer: null
     }
   },
   methods: {
@@ -52,29 +51,7 @@ export default {
         this.$emit('answer-submitted', this.answer)
         this.answer = null
       }
-    },
-    setVariant() {
-      switch (this.question.questionData.difficulty) {
-        case 'easy':
-          this.variant = this.variants.easy
-          break
-        case 'medium':
-          this.variant = this.variants.medium
-          break
-        case 'hard':
-          this.variant = this.variants.hard
-          break
-        default:
-          this.variant = this.variants.default
-          break
-      }
-    }
-  },
-  created() {
-    this.setVariant()
-  },
-  beforeUpdate() {
-    this.setVariant()
+    } 
   }
 }
 </script>

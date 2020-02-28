@@ -86,6 +86,21 @@ export default {
   background-color: #17a2b8  !important;
 }
 
+#main-card {
+  min-height: 25vh;
+}
+
+@media (max-width: 991px) {
+  #main-card {
+    border-radius: 0;
+    border: 0;
+  }
+  #main-card .card-header {
+    border-radius: 0;
+  }
+
+}
+
 @media (min-width: 992px) {
   #main-card {
     margin-top: 2em;

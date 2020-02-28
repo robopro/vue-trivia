@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="h-100">
     <LoadingIcon v-if="loading"></LoadingIcon>
-    <QuizQuestion v-bind:question="currentQuestion" @answer-submitted="onAnswerSubmit" v-if="!loading"></QuizQuestion>
+    <QuizQuestion :question="currentQuestion" @answer-submitted="onAnswerSubmit" v-else></QuizQuestion>
   </div>
 </template>
 
@@ -29,9 +29,9 @@ export default {
   },
   created() {
     let url = `https://opentdb.com/api.php?amount=${this.number}`
-    if (this.category) url += `&category=${this.category}`
+    if (this.category)   url += `&category=${this.category}`
     if (this.difficulty) url += `&difficulty=${this.difficulty}`
-    if (this.type) url += `&type=${this.type}`
+    if (this.type)       url += `&type=${this.type}`
 
     axios.get(url)
       .then(resp => resp.data)
@@ -70,7 +70,7 @@ export default {
       this.nextQuestion()
     },
     nextQuestion() {
-      let unansweredQuestions = this.questions.filter(q => !q.userAnswer)
+      const unansweredQuestions = this.questions.filter(q => !q.userAnswer)
       if (unansweredQuestions.length > 0) {
         this.currentQuestion = unansweredQuestions[0]
       } else {

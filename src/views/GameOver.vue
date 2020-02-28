@@ -1,11 +1,7 @@
 <template>
-  <div>
-    <b-card-body>
-      <b-card-title>Your Score: {{ score }} / {{ maxScore }}</b-card-title>
-    </b-card-body>
-    <div id="results">
-      <Result v-for="(question, index) of questions" :key="index" :question="question"></Result>
-    </div>
+  <div class="h-100">
+      <b-card-header class="custom-info text-white font-weight-bold">Your Score: {{ score }} / {{ maxScore }}</b-card-header>
+    <Result v-for="(question, index) of questions" :key="index" :question="question"></Result>
   </div>
 </template>
 
