@@ -10,5 +10,6 @@ export default {
 }
 </script>
 
-<style scoped>
-</style>
+<docs>
+Simple component showing a loading gif.
+</docs>
